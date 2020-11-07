@@ -9,7 +9,7 @@ var type_anim_on = 0;
 var prescripted_questions = new Array();
 var prescripted_mode = 0;
 var cur_question_index = 0;
-// var bot_typing = 0;
+var bot_typing = 0;
 
 var audio = new Audio('https://kikijinqili.github.io/assets/cocacola/audio/Pling-KevanGC-1485374730.mp3');
 // audio.play();
@@ -38,7 +38,6 @@ function createQuestions() {
 	prescripted_questions[10] = new Question(["We recently launched Coca-Cola Energy, featuring both regular and zero-sugar version. Try it next time you go grocery shopping."], "Tell me a fun fact about the company.", 11);
 	prescripted_questions[11] = new Question(["We used to own the movie studio Columbia Pictures, which produced many popular films including Ghostbuster."], "That is cool!", 12);
 	prescripted_questions[12] = new Question(["Yes."], "Thank you for your help!", -1);
-	// prescripted_questions[13] = new Question([``], '', -2)
 
 }
 
@@ -61,10 +60,10 @@ function askNextQuestion(answer_text) {
 
 	if(valid_word_num > (answer_words.length-3)) {
 		if(next_question > 0) {
-			// bot_typing = 1;
+			bot_typing = 1;
 			var next_question_text = prescripted_questions[next_question].text;
 			for(var i=0; i<next_question_text.length; i++) {
-				text = next_question_text[i];
+				post_text = next_question_text[i];
 				// if(text.indexOf('gif') > -1) {
 				// 	//post gif
 				// 	image = text;
@@ -77,7 +76,9 @@ function askNextQuestion(answer_text) {
 					/*setTimeout(function() {
 						postBotAnswer(text);
 					}, 2000);*/
-					post_text = text;
+				setTimeout(function () {
+					postBotAnswer(post_text)
+				}, 1000);
 
 					// if (pretext_needed.includes(cur_question_index)) {
 					// 	post_text = pretext + post_text;
@@ -95,7 +96,7 @@ function askNextQuestion(answer_text) {
 				}
 			// }
 			cur_question_index = next_question;
-			// bot_typing = 0;
+			bot_typing = 0;
 		} else {
 			// the last question
 			setTimeout(function() {
@@ -181,15 +182,15 @@ function postBotAnswer(text)
 
 
 		//ask the first question
-		setTimeout(function() {
-			postBotAnswer(prescripted_questions[cur_question_index].text);
-			prescripted_mode = 1;
-		}, 1000);
+		// setTimeout(function() {
+		// 	postBotAnswer(prescripted_questions[cur_question_index].text);
+		// 	prescripted_mode = 1;
+		// }, 1000);
 	
-		valid_input = true;
+		// valid_input = true;
 	
 	// } else {
-		if(bye == 0) {
+		if(bye == 0 && bot_typing == 0) {
 			wait_for_bot_response = true;
 			askNextQuestion(text);
 			valid_input = true;	
