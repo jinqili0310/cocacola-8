@@ -190,7 +190,7 @@ function postBotAnswer(text)
 		// valid_input = true;
 	
 	// } else {
-		if(bye == 0) {
+		if(bye == 0 && bot_typing == 0) {
 			wait_for_bot_response = true;
 			askNextQuestion(text);
 			valid_input = true;	
