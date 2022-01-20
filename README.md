@@ -6,4 +6,4 @@
  * @FilePath: /cocacola-8/README.md
 -->
 # CocaCola Clone
-* ## [Github Page](https://kikijinqili.github.io/cocacola-8/)
+* ## [Github Page](https://jinqili0310.github.io/cocacola-8/)
